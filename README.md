@@ -1,8 +1,8 @@
 # Basic-Of-NLP
 """    
 해당 내용은 **"딥 러닝을 이용한 자연어 처리 입문"** 서적을 토대로 공부한 내용을 개인적으로 보기 편하게 정리해놓은 것입니다.    
-> link : <https://wikidocs.net/book/2155>
-> 필요 라이브러리
+> link : <https://wikidocs.net/book/2155>    
+*  필요 라이브러리    
 > tensorflow, keras, scikit-learn, gensim, NLTK, KoNLTK, Pandas, Numpy, Matplotlib    
 
 """    
