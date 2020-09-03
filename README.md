@@ -14,9 +14,11 @@
   + 데이터 내 값의 분포, 변수 간 관계, 결측값 존재 유무 등을 파악하는 과정
 + Pandas profiling
   + 방대한 양의 데이터를 탐색(개요, 변수, 상세확인으로 구성)
-+ 머신러닝 워크플로우
-<img src="">
 + 코퍼스
   + 조사나 연구목적에 의해서 특정 도메인으로부터 수집된 텍스트 집합(txt, csv, xml 등)
++ 머신러닝 워크플로우
+<img src="https://github.com/seunghwanji/Basic-Of-NLP/blob/master/image/%EC%9E%90%EC%97%B0%EC%96%B4%20%EC%B2%98%EB%A6%AC/%EB%A8%B8%EC%8B%A0_%EB%9F%AC%EB%8B%9D_%EC%9B%8C%ED%81%AC%ED%94%8C%EB%A1%9C%EC%9A%B0.png" width=50%>    
 
-## 
+>출처: [here][herelink]
+>
+>[herelink]: https://wikidocs.net/31947
