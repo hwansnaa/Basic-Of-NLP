@@ -227,11 +227,17 @@ padded = pad_sequences(encoded, padding = 'post', value = last_value)
 
 ### 통계적 언어 모델(Statistical Language Model, SLM)
   + 조건부 확률 : A라는 사거니 일어났을 때, B라는 사건이 일어날 확률
+  
   ![Alt text](image/언어모델/조건부확률1.gif "equation1")
+  
   ![Alt text](image/언어모델/조건부확률2.gif "equation2")
+  
   By Chain Rule..
+  
   ![Alt text](image/언어모델/조건부확률3.gif "equation3")
-  Grneralize..
+  
+  Generalize..
+  
   ![Alt text](image/언어모델/조건부확률4.gif "equation4")
 > 문장에 대한 확률에도 조건부 확률을 적용
 + 카운트 기반의 접근
@@ -301,13 +307,19 @@ padded = pad_sequences(encoded, padding = 'post', value = last_value)
 + 내부평가 : 모델의 내부에서 모델 자체가 모델에 대한 평가를 진행. (Perplexity 등)
 
 + 언어모델의 평가 방법 : PPL
+
 ![Alt text](image/언어모델/PPL1.gif "equation1")
+
 By Chain Rule..
+
 ![Alt text](image/언어모델/PPL2.gif "equation2")
+
 If Bigram
+
 ![Alt text](image/언어모델/PPL3.gif "equation3")
 
-+ 분기계수 (Branching Factor)
+
++ 분기계수(Branching Factor)
   + PPL은 선택가능한 경우의 수를 의미하는 분기계수이다.
   + PPL이 낮으면 성능이 더 좋다. 단, 사람이 느끼기에 좋은 언어모델은 아닐 수 있다.
   + 두 모델에 대해 PPL로 비교할 때, 같은 도메인에 동일한 테스트케이스를 사용해야 한다.
