@@ -213,3 +213,102 @@ padded = pad_sequences(encoded, padding = 'post', value = last_value)
   + 예측기반 벡터화(NNLM, RNNLM, Word2Vec, FastText etc..)
   + 두 개를 합한 벡터화(Glove etc..)
   
+## 언어 모델(Language Model)
+> 단어 시퀀스에 확률을 할당하는 모델    
++ 통계를 이용하는 방법
++ 인공 신경망을 이용하는 방법.(GPT, BERT etc..)
+> 최근에는 통계를 이용한 모델보다는 인공 신경망을 이용한 모델이 더 발전
+> 대부분 [앞단어]를 통해 [뒷단어]를 예측
+### 언어 모델링 : 주어진 단어들로부터 아직 모르는 단어를 예측하는 작업.
++ 목적
+1) 기계 번역
+2) 오타 교정
+3) 음성 인식
+
+### 통계적 언어 모델(Statistical Language Model, SLM)
+  + 조건부 확률 : A라는 사거니 일어났을 때, B라는 사건이 일어날 확률
+  ![Alt text](image/언어모델/조건부확률1.gif "equation1")
+  ![Alt text](image/언어모델/조건부확률2.gif "equation2")
+  By Chain Rule..
+  ![Alt text](image/언어모델/조건부확률3.gif "equation3")
+  Grneralize..
+  ![Alt text](image/언어모델/조건부확률4.gif "equation4")
+> 문장에 대한 확률에도 조건부 확률을 적용
++ 카운트 기반의 접근
+  +  오늘 일찍 일어났어야' 다음 '했는데'가 나올 확률은?    
+  > P(했는데|오늘, 일찍, 일어났어야) = count(오늘 일찍 일어났어야 했는데) / count(오늘 일찍 일어났어야) = 30번 / 100번 = 30%
+
++ 카운트 기반 접근의 한계 (희소문제, Sparsity problem)
+  + 현실에서의 확률 분포로 근사하는 언어모델을 만들기 위해서는 방대한 양의 코퍼스 데이터가 필요하다.    
+  + 즉, 희소문제 : 충분한 데이터를 관측하지 못하여 언어를 정확히 모델링하지 못하는 문제
++ 해결법
+> N-gram, 스무딩, 백오프 etc..    
+> 인공 신경망 기반 언어 모델
+
+### N-gram 언어 모델
+> 카운트에 기반한 통계적 접근 + 이전에 등장한 모든 단어 대신, 일부 단어만 고려 (N-gram의 N을 의미)
+
+|SLM|N-gram|
+|---|---|
+|P(했는데\|오늘 일찍 일어났어야)|P(했는데\|했어야)|
++ N-gram 장점
+1) SLM의 코퍼스에 문장이나 단어가 없는 경우 해소
+2) SLM의 문장이 길어질 때 코퍼스에 문장이 없는 경우 해소
++ N-gram
+> 갖고있는 코퍼스에서 n개의 단어 뭉치로 끊어 이를 하나의 토큰으로 간주.
++ 'I am a good boy'
+
+||set|
+|---|---|
+|unigrams|I, am, a, good, boy|
+|bigrams|I am, am a, a good, good boy|
+|trigrams|I amd a, am a good, a good boy|
+|4- grams|I am a good, am a good boy|
+
++ I am a good **W**
+> In 3-gram, P{W|a good) = count(a good W) / count(a good)    
++ N-gram 언어 모델의 한계
+> 전체 문장을 고려한 언어 모델보다는 성능이 떨어진다.
+  + 희소문제
+  > SLM보다 count될 확률이 맣아질 뿐, 희소문제는 여전히 존재.
+  + n 선택에서의 trade off(교환)    
+  
+  ||성능|count|모델 SIZE|
+  |---|---|---|---|
+  |n이 증가|향상|감소|증가|
+  |n이 감소|하락|증가|감소|
+  > n은 최대 5를 넘어서면 안된다!
++ 적용 분야에 맞는 코퍼스 수집
+  + 마케팅 분야 vs 의료 분야의 확률 분포는 다르다.
+  + 원하는 도메인의 코퍼스를 활용하여 언어모델 개발
+  
++ 인공신경망을 이용한 언어모델. (Neural Network Based Language Model)
+  + N-gram 언어 모델보다 대체적으로 성능이 우수한 인공신경망 기반 언어모델 사용 증가.
+  
++ 한국에서의 언어모델
+  1. 어순이 중요하지 않다.
+  > 오늘 나는 기분이 좋다.    
+  > 나는 오늘 기분이 좋다.    
+  > 오늘 기분이 좋다.    
+  > 기분이 나는 좋다.    
+  2. 한국어는 교착어이다.    
+  나 : 나는, 나를, 나의, 나에게, 나로써
+  > 토큰화를 통해 접사나 조사 등을 분리해야 한다.
+  3. 한국어는 띄어쓰기가 제대로 지켜지지 않는다
+  > 띄어쓰기를제대로하지않아도의미전달이가능하다.
+### 퍼플렉서티(Perplexity)
++ 외부평가 : 모델의 외부에서 모델에 대한 평가를 진행. (모델의 성능비교 등)
++ 내부평가 : 모델의 내부에서 모델 자체가 모델에 대한 평가를 진행. (Perplexity 등)
+
++ 언어모델의 평가 방법 : PPL
+![Alt text](image/언어모델/PPL1.gif "equation1")
+By Chain Rule..
+![Alt text](image/언어모델/PPL2.gif "equation2")
+If Bigram
+![Alt text](image/언어모델/PPL3.gif "equation3")
+
++ 분기계수 (Branching Factor)
+  + PPL은 선택가능한 경우의 수를 의미하는 분기계수이다.
+  + PPL이 낮으면 성능이 더 좋다. 단, 사람이 느끼기에 좋은 언어모델은 아닐 수 있다.
+  + 두 모델에 대해 PPL로 비교할 때, 같은 도메인에 동일한 테스트케이스를 사용해야 한다.
+> 페이스북 AI연구팀이 공개한 자료에 따르면, 대부분 기존 언어모델보다 인공신경망 모델의 PPL이 더 낮다(= 성능이 우수하다).
