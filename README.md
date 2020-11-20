@@ -1,11 +1,8 @@
 # Basic-Of-NLP
-"""    
 해당 내용은 **"딥 러닝을 이용한 자연어 처리 입문"** 서적을 토대로 공부한 내용을 개인적으로 보기 편하게 정리해놓은 것입니다.    
 > link : <https://wikidocs.net/book/2155>    
 *  필요 라이브러리    
-> tensorflow, keras, scikit-learn, gensim, NLTK, KoNLTK, Pandas, Numpy, Matplotlib    
-
-"""    
+> tensorflow, keras, scikit-learn, gensim, NLTK, KoNLTK, Pandas, Numpy, Matplotlib     
 
 ## 자연어 처리
 + 자연어 : 일상생활의 언어    
@@ -154,7 +151,7 @@ from nltk.tokenize import RegexpToknizer
   
 ### 정수 인코딩
 > 단어의 빈도수를 기준으로 정렬한 후, 각각에 해당하는 Index의 원소에 1을 대입.    
-> 빈고수가 높으면, 낮은 Index를 부여. 이 때, 특정 횟수 이하의 숫자는 제거(cleaning작업)    
+> 빈수가 높으면, 낮은 Index를 부여. 이 때, 특정 횟수 이하의 숫자는 제거(cleaning작업)    
 > 문장의 매핑 과정 중 Index Dict에 존재하지 않는 단어가 존재하면, key는 'OOV'로, Value는 len+1로 추가한다.
 + sent_tokenize -> 문장 단위로 토큰화 진행
 + word_tokenize -> 단어 단위로 토큰화 진행
@@ -276,7 +273,7 @@ padded = pad_sequences(encoded, padding = 'post', value = last_value)
 + N-gram 언어 모델의 한계
 > 전체 문장을 고려한 언어 모델보다는 성능이 떨어진다.
   + 희소문제
-  > SLM보다 count될 확률이 맣아질 뿐, 희소문제는 여전히 존재.
+  > SLM보다 count될 확률이 높아질 뿐, 희소문제는 여전히 존재.
   + n 선택에서의 trade off(교환)    
   
   ||성능|count|모델 SIZE|
