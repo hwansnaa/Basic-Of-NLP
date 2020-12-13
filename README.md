@@ -338,3 +338,12 @@ If Bigram
   ![Alt text](image/TF-IDF/idf.gif "idf")
   > idf 계산 중 log를 사용하는 이유 : 문서n의 개수에 따라 한없이 커지는 idf값을 조정하기위해
 + **TF-IDF가 항상 DTM보다 좋은 결과를 내지는 않는다.**
+
++ 토픽 모델링
+  + 문서 집합 사이의 추상적인 주제를 발견하기위한 통계적 모델
+  + LSA vs LDA
+    + LSA : Latent Semantic Analysis (잠재 의미 분석)
+      + using SVD
+      + 한계 : 새로운 데이터가 들어오면 처음부터 다시 계산해야함
+    + LDA : Latent Dirichlet Analysis (잠재 디리클레 분석)
+      + 가정: 문서는 topic의 혼합, 데이터가 주어지면 문서 생성과정의 역추적
