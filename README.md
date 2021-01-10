@@ -113,7 +113,7 @@
   + 어미 : 어간뒤에 붙어 용도에따라 변하는 부분
   + 규칙활용 : 어간이 어미를 취할 때 어간의 모습이 일정
   + 불규칙 활용 : 어간이 어미를 취할 때 어간의 모습이 변하거나 어미가 특수한 어미일 경우
-  >> 불규칙 활용의 경우, 좀 더 복잡한 규칙이 필요하다.
+    > 불규칙 활용의 경우, 좀 더 복잡한 규칙이 필요하다.
 
 + 불용어(StopWord)
   + 자주 등장해도 분석에 큰 도움이 없는 단어로 NLTK에서는 불용어 패키지로 특정 단어들을 정의
@@ -347,3 +347,37 @@ If Bigram
       + 한계 : 새로운 데이터가 들어오면 처음부터 다시 계산해야함
     + LDA : Latent Dirichlet Analysis (잠재 디리클레 분석)
       + 가정: 문서는 topic의 혼합, 데이터가 주어지면 문서 생성과정의 역추적
+      
+    
+## 워드 임베딩(Word Embedding)
+> 자연어를 컴퓨터가 이해하기 쉬운 벡터 형식으로 변환하는 작업(Word2Vec, Glove)  
+
++ 희소 표현(Sparse Representation)
+  + 표현식의 대부분의 값이 0
+  + 자원 낭비
+  + ex. 원 핫 인코딩, DTM
++ 밀집 표현(Dense Representation)
+  + 단어를 정해진 크기로 표현
+  + 밀집 표현을 통한 단어 표현을 __워드 임베딩(Word Embedding)__이라함
+  + 워드 임베딩을 표현을 통한 결과를 __임베딩 벡터(Embedding Vector)__라 함
+
++ Word2Vec
+  + __'비슷한 위치에서 등장하는 단어들은 비슷한 관계를 가진다'__
+  + Projection Layer를 통해 학습, activation layer X
+  + 대부분 Skip-gram이 CBOW보다 성능이 좋음  
+  
+  + CBOW(Continuous Bag Of Words)
+    + 주변에 위치한 단어(context word)로 중심 단어(center word) 예측
+    + context word들의 Projection Layer 연산 결과(=output vector)의 평균값을 사용
+    + 몇개의 주변 단어를 볼것인지 윈도우(window)를 통해 결정
+    + window size = n -> context word size = 2n (앞 n개, 뒤 n개)  
+  
+  + Skip-gram
+    + 중심단어(center word)를 통해 주변 단어(contecxt layer)를 예측
+    + output vector가 하나만 나오므로 평균을 계산할 필요가 없음  
+  
+  + NNLM과의 차이점
+    + NNLM은 이전 단어만 활용하여 단어를 예측(Word2Vec은 이전 단어와 이후 단어를 모두 사용)
+    + NNLM은 input layer - hidden layer - projection layer - output layer(Word2Vec은 input layer - projection layer - output layer)
+    
+  
